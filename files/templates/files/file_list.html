@@ -1,5 +1,10 @@
 {% extends 'files/wrapper.html' %}
 
 {% block content %}
-    {{user_data}}
+    {% include 'files/includes/header.html' %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'files/file_list.css' %}">
+    
+    <div class = 'file_grid'>
+    </div>
 {% endblock %}
