@@ -1,0 +1,142 @@
+{% extends 'files/wrapper.html' %}
+
+{% block content %}
+
+<style media="screen">
+
+    body{
+        font-family:sans-serif;
+    }
+
+  form{
+    width:700px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top:20px;
+    /* background-color: grey; */
+    padding-top:10px;
+    padding-bottom:30px;
+    border-radius:25px;
+    transition:  0.1s ease;
+
+  }
+
+
+  input,select{
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width:500px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height:32px;
+    /* padding-left:10px; */
+    font-size:24px;
+    margin-bottom: 20px;
+    border: none;
+    border-bottom: 2px solid #F52332;
+    color:#4F4F4F;
+    outline:none;
+  }
+
+
+  button{
+    width:500px;
+    display: block;
+    position: relative;
+    border-radius: 15px;
+    height:36px;
+    font-size: 22px;
+    font-weight: bold;
+    border:none;
+    outline:none;
+    margin-left:auto;
+    margin-right:auto;
+    color:white;
+    background-color: #F52332;
+    font-weight: 100;
+  }
+
+  h1{
+    font-weight: 100;
+    width:700px;
+    text-align: center;
+  }
+
+  .options{
+    width:100%;
+  }
+
+  .option{
+    position:relative;
+    width:500px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .option > input {
+    position:absolute;
+    width:25px;
+    left:0px;
+    top:5px;
+    transition:0.5s;
+
+  }
+
+  .option > label{
+    position:relative;
+    font-size:24px;
+    top:10px;
+    left:30px;
+
+  }
+
+  .message-box{
+    width:700px;
+    text-align:center;
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .backward{
+    /* margin-left:10%; */
+    width:80%;
+    position:absolute;
+    display:block;
+    color:#F52332;
+    text-decoration:none;
+    margin-left:10%;
+    text-align:center;
+    bottom:20px;
+    font-weight:thin;
+  }
+
+
+
+</style>
+
+<form class=""  method="POST">
+  <h1>Авторизация</h1>
+  {% csrf_token %}
+  {{form.username}}
+  {{form.password1}}
+  {{form.password2}}
+
+  <button type="submit" name="button">Войти</button>
+</form>
+<div class="message-box">
+
+  {% if messages %}
+
+    {% for message in messages %}
+      {{message}}
+    {% endfor %}
+
+  {% endif %}
+</div>
+
+<!-- <a href="/" class = 'backward'>Регистрация</a> -->
+
+{% endblock %}
