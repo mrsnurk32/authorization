@@ -1,0 +1,19 @@
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'files/header.css' %}">
+
+<header>
+    <div class = 'header-wrapper'>
+        <span class='user_data'>{{user_data}}</span>
+        <span class='logout' id='logout_btn'>Выйти</span>
+
+    </div>
+    <script>
+        logout_btn.addEventListener('click',()=>{
+            location.href = '/logout'
+        })
+    </script>
+</header>
+
+{% endblock %}
