@@ -8,7 +8,6 @@ from django.contrib import messages
 
 #authentication modules
 from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
@@ -20,6 +19,10 @@ from django.contrib.auth.forms import UserCreationForm
 
 #Forms
 from .forms import LoginForm
+
+#User data
+# from django.contrib.auth.models import User
+
 
 # Create your views here.
 
@@ -77,6 +80,12 @@ def register(request):
     return render(request, 'files/register.html', {'form': form})
 
 
+def logout_view(request):
+    logout(request)
+    return redirect('accounts/login/')
+
+
 @login_required(login_url='accounts/login/')
 def home(request):
-    return render(request, 'files/wrapper.html')
+    user_data = request.user
+    return render(request, 'files/file_list.html', {'user_data':user_data})
