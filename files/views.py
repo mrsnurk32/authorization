@@ -84,10 +84,10 @@ def register(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('accounts/login/')
+    return redirect('/accounts/login/')
 
 
-@login_required(login_url='accounts/login/')
+@login_required(login_url='/accounts/login/')
 def home(request):
     user_data = request.user
 
@@ -102,3 +102,22 @@ def home(request):
         'page_obj':page_obj
     }
     return render(request, 'files/file_list.html', context)
+
+
+@login_required(login_url='/accounts/login/')
+def view_file(request, file_id):
+
+    file = FileStorage.objects.get(file_id = file_id)
+    file = open('media/' + str(file.upload),'r').read()
+    rows = file.split('\n')
+
+    final_list = [row.split(',') for row in rows]
+
+    user_data = request.user
+    context = {
+        'user_data':user_data,
+        'file_data':final_list
+    }
+
+
+    return render(request, 'files/view_file.html',context)
