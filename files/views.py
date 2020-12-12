@@ -2,6 +2,8 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View
 from django.views.generic import TemplateView
+from django.core.paginator import Paginator
+
 
 #messages
 from django.contrib import messages
@@ -20,8 +22,8 @@ from django.contrib.auth.forms import UserCreationForm
 #Forms
 from .forms import LoginForm
 
-#User data
-# from django.contrib.auth.models import User
+#Models
+from .models import FileStorage
 
 
 # Create your views here.
@@ -88,4 +90,15 @@ def logout_view(request):
 @login_required(login_url='accounts/login/')
 def home(request):
     user_data = request.user
-    return render(request, 'files/file_list.html', {'user_data':user_data})
+
+    file_list = FileStorage.objects.all()
+    paginator = Paginator(file_list, 25)
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {
+        'user_data':user_data,
+        'page_obj':page_obj
+    }
+    return render(request, 'files/file_list.html', context)
