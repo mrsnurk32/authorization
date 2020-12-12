@@ -55,7 +55,7 @@ class FileCreator(FileSaver):
     
     def generate_files(self):
         
-        for i in range(10):
+        for i in range(30):
             self.save_file()
 
 
