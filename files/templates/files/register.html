@@ -39,6 +39,7 @@
     border-bottom: 2px solid #F52332;
     color:#4F4F4F;
     outline:none;
+    background-color:#EDEDED;
   }
 
 
@@ -118,7 +119,7 @@
 </style>
 
 <form class=""  method="POST">
-  <h1>Авторизация</h1>
+  <h1>Регистрация</h1>
   {% csrf_token %}
   {{form.username}}
   {{form.password1}}
@@ -137,6 +138,6 @@
   {% endif %}
 </div>
 
-<!-- <a href="/" class = 'backward'>Регистрация</a> -->
+<a href="/" class = 'backward'>Есть аккаунт?</a>
 
 {% endblock %}
