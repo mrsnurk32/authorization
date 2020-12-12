@@ -26,3 +26,14 @@
     display: block;
     margin-left:15px;
 }
+
+.pagination{
+    position: fixed;
+    bottom:15px;
+    width:100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* bottom:0vh; */
+    transition: translateX(50%);
+}
