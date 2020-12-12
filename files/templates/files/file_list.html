@@ -7,14 +7,14 @@
     
     <div class = 'file_grid'>
         {% for item in page_obj %}
-            <div class = 'file_box' onclick='open_file({{item.file_id}})'>
+            <div class = 'file_box' onclick='open_file( {{ item.file_id }} )'>
                 <span>{{ item.created_date.date.day }}/{{ item.created_date.date.month }}/{{ item.created_date.date.year }}</span>
                 <span>{{ item.file_name }}</span>
             </div>
         {% endfor %}
         <script>
             function open_file(file_id){
-                window.open(file_id, '_blank').focus();
+                window.open(file_id + '/view', '_blank').focus();
             }
         </script>
 
