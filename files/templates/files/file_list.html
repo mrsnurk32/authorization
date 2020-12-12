@@ -6,12 +6,39 @@
     <link rel="stylesheet" href="{% static 'files/file_list.css' %}">
     
     <div class = 'file_grid'>
+        {% for item in page_obj %}
+            <div class = 'file_box' onclick='open_file({{item.file_id}})'>
+                <span>{{ item.created_date.date.day }}/{{ item.created_date.date.month }}/{{ item.created_date.date.year }}</span>
+                <span>{{ item.file_name }}</span>
+            </div>
+        {% endfor %}
+        <script>
+            function open_file(file_id){
+                window.open(file_id, '_blank').focus();
+            }
+        </script>
 
-        <div class = 'file_box'>
-            <span>12-12-2020</span>
-            <span>файл.test</span>
-            <span>2mb</span>
-        </div>
+    </div>
 
+
+
+    
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+    
+            <span class="current">
+                Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+            </span>
+    
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
     </div>
 {% endblock %}
