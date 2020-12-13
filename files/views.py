@@ -25,8 +25,33 @@ from .forms import LoginForm
 #Models
 from .models import FileStorage
 
+#rest api
+from rest_framework.exceptions import ParseError
+from rest_framework.parsers import FileUploadParser
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework import status
+
 
 # Create your views here.
+
+class FileUpload(APIView):
+    parser_class = (FileUploadParser,)
+
+    def put(self, request, format=None):
+
+        if 'file' not in request.data:
+            raise ParseError("Empty content")
+        print(request.data)
+        f = request.data['file']
+
+        FileStorage.objects.create(
+            file_name = request.data['file_name'],
+            upload = request.data['file']
+        )
+        # mymodel.my_file_field.save(f.name, f, save=True)
+
+        return Response(status=status.HTTP_201_CREATED)
 
 
 def login_view(request):
