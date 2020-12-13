@@ -10,6 +10,6 @@ urlpatterns = [
     path('accounts/login/', views.login_view, name = 'login_form'),
     path('register/', views.register, name = 'register'),
     path('logout',views.logout_view, name = 'logout'),
-    path('<file_id>/view', views.view_file, name = 'view_file')
-
+    path('<file_id>/view', views.view_file, name = 'view_file'),
+    path('upload/',views.FileUpload.as_view())
 ]
