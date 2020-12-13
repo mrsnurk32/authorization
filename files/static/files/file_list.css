@@ -8,9 +8,42 @@
     grid-template-columns: repeat(5, 1fr);
     grid-gap: 5vh;
     margin-bottom:10vh;
+    /* transition: 0.3s; */
 
 
 }
+@media (min-width:500px){
+    .file_grid{
+        grid-template-columns: repeat(2, 1fr);
+
+
+    }
+}
+
+@media (min-width:710px){
+    .file_grid{
+        grid-template-columns: repeat(3, 1fr);
+
+
+    }
+}
+
+@media (min-width:940px){
+    .file_grid{
+        grid-template-columns: repeat(4, 1fr);
+
+
+    }
+}
+
+@media (min-width:1140px){
+    .file_grid{
+        grid-template-columns: repeat(5, 1fr);
+
+
+    }
+}
+
 
 .file_box{
     width:200px;
@@ -29,9 +62,9 @@
 }
 
 .pagination{
-    position: fixed;
-    bottom:15px;
-    width:100vw;
+    position: absolute;
+    bottom:-40px;
+    width:100%;
     display: flex;
     align-items: center;
     justify-content: center;
